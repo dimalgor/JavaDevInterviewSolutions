@@ -427,29 +427,93 @@ public class ArraysSolutions {
 
     public int[] intersect2(int[] nums1, int[] nums2) {
         int[] intersectArr = new int[]{};
-        if (nums1.length != 0 && nums2.length != 0){
+        if (nums1.length != 0 && nums2.length != 0) {
             Arrays.sort(nums1);
             Arrays.sort(nums2);
-            int[] bg;
-            int[] sm;
-            if (nums1.length <= nums2.length){
-                sm = nums1;
-                bg = nums2;
-            } else {
-                sm = nums2;
-                bg = nums1;
-            }
             List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < sm.length; i++){
-                for (int j = i; j < bg.length; j++){
-                    if(sm[i] == bg[j]){
-                        list.add(sm[i]);
+            int i = 0;
+            int j = 0;
+            while (i < nums1.length && j < nums2.length) {
+                if (nums1[i] > nums2[j]) {
+                    j++;
+                } else if (nums2[j] > nums1[i]) {
+                    i++;
+                } else {
+                    list.add(nums1[i++]);
+                    j++;
+                }
+            }
+            intersectArr = list.stream().mapToInt(k -> k).toArray();
+        }
+        return intersectArr;
+    }
+
+    public int[] plusOne(int[] digits) {
+        if (digits[digits.length - 1] + 1 <= 9) {
+            digits[digits.length - 1] = digits[digits.length - 1] + 1;
+            return digits;
+        }
+
+        long sum = 0;
+        for (int i = 0; i < digits.length - 1; i++) {
+            sum += digits[i] * Math.pow(10, (digits.length - 1 - i));
+        }
+        sum += digits[digits.length - 1] + 1;
+
+        long digit = sum;
+        int resultLength = 0;
+        while (digit > 0) {
+            digit = digit / 10;
+            resultLength++;
+        }
+
+        digit = sum;
+        int[] result = new int[resultLength];
+        for (int i = result.length - 1; i >= 0; i--) {
+            result[i] = (int) digit % 10;
+            digit = digit / 10;
+        }
+
+        return result;
+    }
+
+    public int[] plusOne2(int[] digits) {
+        if (digits[digits.length - 1] + 1 <= 9) {
+            digits[digits.length - 1] = digits[digits.length - 1] + 1;
+            return digits;
+        } else if (digits.length == 1){
+            int[] result = new int[2];
+            result[0] = 1;
+            result[1] = 0;
+            return result;
+        }
+
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] + 1 > 9) {
+                if (digits[i] > 9) {
+                    digits[i] = digits[i] % 10;
+                } else {
+                    digits[i] = (digits[i] + 1) % 10;
+                }
+
+                if (i - 1 > 0) {
+                    digits[i - 1] = ++digits[i - 1];
+                } else if (i - 1 == 0){
+                    if ((digits[i-1] + 1) > 9){
+                        int[] result = new int[digits.length + 1];
+                        result[0] = 1;
+                        for (int j = 0; j < digits.length; j++) {
+                            result[i + 1] = digits[i];
+                        }
+                        return result;
+                    } else {
+                        digits[i-1] = ++digits[i-1];
                         break;
                     }
                 }
             }
-            intersectArr = list.stream().mapToInt(i -> i).toArray();
         }
-        return intersectArr;
+
+        return digits;
     }
 }

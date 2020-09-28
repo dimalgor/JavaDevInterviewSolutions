@@ -407,10 +407,31 @@ public class ArraysSolutionsTest {
 
     @Test
     void intersect() {
+        assertTrue(Arrays.equals(new int[]{-2147483648, 1}, arraysSolutions.intersect2(new int[]{-2147483648,1,2,3}, new int[]{1,-2147483648,-2147483648})));
         assertTrue(Arrays.equals(new int[]{2,2}, arraysSolutions.intersect2(new int[]{1,2,2,1}, new int[]{2,2})));
         assertTrue(Arrays.equals(new int[]{4,9}, arraysSolutions.intersect2(new int[]{4,9,5}, new int[]{9,4,9,8,4})));
         assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.intersect2(new int[]{2,1}, new int[]{1,1})));
         assertTrue(Arrays.equals(new int[]{1,2}, arraysSolutions.intersect2(new int[]{2,1}, new int[]{1,2})));
         assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.intersect2(new int[]{3,1,2}, new int[]{1,1})));
+    }
+
+    @Test
+    void plusOne() {
+        assertTrue(Arrays.equals(new int[]{9,8,7,6,5,4,3,2,1,1}, arraysSolutions.plusOne(new int[]{9,8,7,6,5,4,3,2,1,0})));
+        assertTrue(Arrays.equals(new int[]{1,2,4}, arraysSolutions.plusOne(new int[]{1,2,3})));
+        assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.plusOne(new int[]{0})));
+        assertTrue(Arrays.equals(new int[]{1,3,0}, arraysSolutions.plusOne(new int[]{1,2,9})));
+    }
+
+    @Test
+    void plusOne2() {
+        assertTrue(Arrays.equals(new int[]{9,0,0,0}, arraysSolutions.plusOne2(new int[]{8,9,9,9})));
+        assertTrue(Arrays.equals(new int[]{1,0,0,0}, arraysSolutions.plusOne2(new int[]{9,9,9})));
+        assertTrue(Arrays.equals(new int[]{1,0}, arraysSolutions.plusOne2(new int[]{9})));
+        assertTrue(Arrays.equals(new int[]{5,6,2,0,0,4,6,2,5,0}, arraysSolutions.plusOne2(new int[]{5,6,2,0,0,4,6,2,4,9})));
+        assertTrue(Arrays.equals(new int[]{9,8,7,6,5,4,3,2,1,1}, arraysSolutions.plusOne2(new int[]{9,8,7,6,5,4,3,2,1,0})));
+        assertTrue(Arrays.equals(new int[]{1,2,4}, arraysSolutions.plusOne2(new int[]{1,2,3})));
+        assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.plusOne2(new int[]{0})));
+        assertTrue(Arrays.equals(new int[]{1,3,0}, arraysSolutions.plusOne2(new int[]{1,2,9})));
     }
 }
