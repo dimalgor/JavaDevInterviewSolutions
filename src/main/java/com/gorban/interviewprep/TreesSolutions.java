@@ -1,9 +1,6 @@
 package com.gorban.interviewprep;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class TreesSolutions {
     public int maxDepth(TreeNode root) {
@@ -43,26 +40,17 @@ public class TreesSolutions {
         return list;
     }
 
-//    Input: root = [1,null,2,3]
-//    Output: [1,3,2]
-
-    //      1
-    //    /   \
-    // null    2
-    //        /
-    //       3
-
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        if (root != null){
+        if (root != null) {
             traverseTreeInOrder(root, list);
             return list;
         }
         return list;
     }
 
-    private void traverseTreeInOrder(TreeNode node, List<Integer> list){
-        if (node == null){
+    private void traverseTreeInOrder(TreeNode node, List<Integer> list) {
+        if (node == null) {
             return;
         }
         traverseTreeInOrder(node.left, list);
@@ -72,7 +60,7 @@ public class TreesSolutions {
 
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        if (root != null){
+        if (root != null) {
             traverseInPostOrder(root, list);
             return list;
         }
@@ -80,13 +68,37 @@ public class TreesSolutions {
         return list;
     }
 
-    private void traverseInPostOrder(TreeNode node, List<Integer> list){
-        if (node == null){
+    private void traverseInPostOrder(TreeNode node, List<Integer> list) {
+        if (node == null) {
             return;
         }
         traverseInPostOrder(node.left, list);
         traverseInPostOrder(node.right, list);
         list.add(node.val);
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> listOfLists = new ArrayList<>();
+        if (root != null) {
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                List<Integer> levelList = new ArrayList<>();
+                int queueSize = queue.size();
+                for (int i = 0; i < queueSize; i++) {
+                    TreeNode node = queue.remove();
+                    levelList.add(node.val);
+                    if (node.left != null) {
+                        queue.add(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.add(node.right);
+                    }
+                }
+                listOfLists.add(levelList);
+            }
+        }
+        return listOfLists;
     }
 
     public static class TreeNode {
@@ -96,8 +108,6 @@ public class TreesSolutions {
 
         public TreeNode() {
         }
-
-        ;
 
         public TreeNode(int val) {
             this.val = val;

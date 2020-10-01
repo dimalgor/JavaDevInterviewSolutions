@@ -87,4 +87,15 @@ class TreesSolutionsTest {
         List<Integer> expectedList = new ArrayList<>(Arrays.asList(3,2,1));
         assertEquals(expectedList, trees.postorderTraversal(treeNode));
     }
+
+    @Test
+    void levelOrder() {
+        TreesSolutions.TreeNode treeNode = new TreesSolutions.TreeNode(3);
+        treeNode.left = new TreesSolutions.TreeNode(9);
+        treeNode.right = new TreesSolutions.TreeNode(20);
+        treeNode.right.left = new TreesSolutions.TreeNode(15);
+        treeNode.right.right = new TreesSolutions.TreeNode(7);
+        List<List<Integer>> expectedList = new ArrayList<>(Arrays.asList(Arrays.asList(3), Arrays.asList(9,20), Arrays.asList(15,7)));
+        assertEquals(expectedList, trees.levelOrder(treeNode));
+    }
 }
