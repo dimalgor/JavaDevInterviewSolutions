@@ -516,4 +516,38 @@ public class ArraysSolutions {
 
         return digits;
     }
+
+    // 121 -> 12.1 ->  1.2 ->  0.1
+    // l        0       1       2
+    // n        1       2       1
+    //          +               +
+
+    public boolean isPalindrome(int x) {
+        if (x < 0){
+            return false;
+        } else if (x == 0){
+            return true;
+        } else {
+            List<Integer> list = new ArrayList<>();
+            while (x != 0){
+                list.add(x%10);
+                x = x/10;
+            }
+
+            if (list.size() == 2){
+                if (list.get(0) == list.get(1)){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                for (int i = 0; i < list.size()/2; i++){
+                    if (list.get(i) != list.get((list.size() - 1) - i)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+    }
 }

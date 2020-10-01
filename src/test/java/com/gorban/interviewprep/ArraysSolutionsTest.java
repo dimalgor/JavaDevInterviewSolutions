@@ -434,4 +434,11 @@ public class ArraysSolutionsTest {
         assertTrue(Arrays.equals(new int[]{1}, arraysSolutions.plusOne2(new int[]{0})));
         assertTrue(Arrays.equals(new int[]{1,3,0}, arraysSolutions.plusOne2(new int[]{1,2,9})));
     }
+
+    @Test
+    void isPalindrome() {
+        assertTrue(arraysSolutions.isPalindrome(121));
+        assertFalse(arraysSolutions.isPalindrome(-121));
+        assertFalse(arraysSolutions.isPalindrome(10));
+    }
 }
