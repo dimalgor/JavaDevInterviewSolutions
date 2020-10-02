@@ -101,6 +101,34 @@ public class TreesSolutions {
         return listOfLists;
     }
 
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null){
+            return true;
+        }
+        return checkSymmetry(root.left, root.right);
+    }
+
+    private boolean checkSymmetry(TreeNode lNode, TreeNode rNode){
+        if (lNode == null || rNode == null) {
+            return lNode == rNode;
+        }
+        if (lNode.val != rNode.val){
+            return false;
+        }
+        return checkSymmetry(lNode.left, rNode.right) && checkSymmetry(lNode.right, rNode.left);
+    }
+
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null){
+            return false;
+        } else {
+            if (sum == root.val && root.left == null && root.right == null){
+                return true;
+            }
+            return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+        }
+    }
+
     public static class TreeNode {
         public TreeNode left;
         public TreeNode right;
