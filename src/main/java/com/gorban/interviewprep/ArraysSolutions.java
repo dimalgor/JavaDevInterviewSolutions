@@ -517,11 +517,6 @@ public class ArraysSolutions {
         return digits;
     }
 
-    // 121 -> 12.1 ->  1.2 ->  0.1
-    // l        0       1       2
-    // n        1       2       1
-    //          +               +
-
     public boolean isPalindrome(int x) {
         if (x < 0){
             return false;
@@ -550,4 +545,98 @@ public class ArraysSolutions {
             }
         }
     }
+
+    public int search(int[] nums, int target) {
+        if (nums.length == 0){
+            return 0;
+        }
+        if (nums.length == 1){
+            return nums[0] == target ? 0 : -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+
+        while (low <= high){
+            int mid = low + ((high - low)/2);
+            if (target == nums[mid]){
+                return mid;
+            }
+            if (target < nums[mid]){
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public int mySqrt(int x) {
+        if (x > 1){
+            int low = 0;
+            int high = x;
+
+            while (low < high){
+                int mid = low + (high - low)/2;
+                int sqrt = mid * mid;
+                if (sqrt == x){
+                    return mid;
+                } else if (sqrt > x){
+                    high = mid;
+                } else if (sqrt < x){
+                    low = mid + 1;
+                }
+            }
+            return low - 1;
+        }
+        return x;
+    }
+
+    public int mySqrt2(int x) {
+        if(x < 2){
+            return x;
+        }
+        int low = 0;
+        int high = x / 2;
+
+        while(low < high) {
+            int mid = low + (high - low + 1) / 2;
+            if(mid > x/mid) {
+                high = mid - 1;
+            } else {
+                low = mid;
+            }
+        }
+        return low;
+    }
+
+    public static class MaxAndMin {
+        int max;
+        int min;
+    }
+
+    public MaxAndMin getMaxAndMin(int[] numbers){
+        // array is unsorted, and we have time limitation, so implement bubble sorting;
+        MaxAndMin result = new MaxAndMin();
+        if (numbers.length < 2){
+            return result;
+        }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+
+        for (int i = 0; i < numbers.length; i++){
+            if (numbers[i] < min){
+                min = numbers[i];
+            }
+            if (numbers[i] > max){
+                max = numbers[i];
+            }
+        }
+
+        result.max = max;
+        result.min = min;
+
+        return result;
+    }
+
 }

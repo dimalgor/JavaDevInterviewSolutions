@@ -441,4 +441,46 @@ public class ArraysSolutionsTest {
         assertFalse(arraysSolutions.isPalindrome(-121));
         assertFalse(arraysSolutions.isPalindrome(10));
     }
+
+    @Test
+    void search() {
+        int[] nums = new int[]{-1,0,3,5,9,12};
+        assertEquals(4, arraysSolutions.search(nums, 9));
+    }
+
+    @Test
+    void search2() {
+        int[] nums = new int[]{-1,0,3,5,9,12};
+        assertEquals(-1, arraysSolutions.search(nums, 2));
+    }
+
+    @Test
+    void search3() {
+        int[] nums = new int[]{5};
+        assertEquals(0, arraysSolutions.search(nums, 5));
+    }
+
+    @Test
+    void mySqrt() {
+        assertEquals(2, arraysSolutions.mySqrt(4));
+    }
+
+    @Test
+    void mySqrt2() {
+        assertEquals(2, arraysSolutions.mySqrt(8));
+    }
+
+    @Test
+    void mySqrt3() {
+        assertEquals(46339, arraysSolutions.mySqrt2(2147395599));
+    }
+
+
+    @Test
+    void getMaxAndMin() {
+        int[] nums = new int[]{1,5,3,2,4};
+        ArraysSolutions.MaxAndMin maxAndMin = arraysSolutions.getMaxAndMin(nums);
+        assertEquals(5, maxAndMin.max);
+        assertEquals(1, maxAndMin.min);
+    }
 }
